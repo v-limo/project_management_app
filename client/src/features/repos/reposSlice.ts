@@ -1,5 +1,3 @@
-
-
 import { createSlice } from '@reduxjs/toolkit'
 
 import { RootState } from '../../app/store'
@@ -8,14 +6,12 @@ import { fetchRepos } from './reposAsync'
 
 type reposState = {
   repos: repoType[]
-  filtered: repoType[]
   isLoading: boolean
   error: boolean
 }
 
 const initialState = {
   repos: [],
-  filtered: [],
   isLoading: false,
   error: false,
 } as reposState
@@ -24,35 +20,52 @@ export const reposSlice = createSlice({
   name: 'repos',
   initialState,
   reducers: {
-    sortRecent(state) {
-      state.repos.sort((a, b) => {
-        return (
-          new Date(b.created_at).valueOf() - new Date(a.created_at).valueOf()
+    addRandomStage(state) {
+      const stages = [
+        'PLANNING',
+        'ANALYZING',
+        'DESIGNING',
+        'DEVELOPMENT',
+        'TESTING',
+        'RELEASE',
+        'DONE',
+        'CANCELLED',
+        'FAILED',
+      ] as any[
+        | 'PLANNING'
+        | 'ANALYZING'
+        | 'DESIGNING'
+        | 'DEVELOPMENT'
+        | 'TESTING'
+        | 'RELEASE'
+        | 'DONE'
+        | 'CANCELLED'
+        | 'FAILED']
+
+      state.repos.forEach((repo) => {
+        const randomStage = stages[Math.floor(Math.random() * stages.length)]
+        repo.stage = randomStage
+      })
+
+      // add random future dates to
+      state.repos.forEach((repo) => {
+        const randomDate = new Date()
+        randomDate.setDate(
+          randomDate.getDate() + Math.floor(Math.random() * 30)
         )
+        repo.date_line = randomDate
       })
-    },
 
-    sortPopular(state, action) {
+      // sort repos by stage
       state.repos.sort((a, b) => {
-        return b.stargazers_count - a.stargazers_count
+        if (a.stage < b.stage) {
+          return -1
+        }
+        if (a?.stage > b?.stage) {
+          return 1
+        }
+        return 0
       })
-    },
-
-    filterMyRepos(state, action) {
-      state.repos = state.repos.filter((repo) => {
-        return repo.owner.login === action.payload
-      })
-    },
-
-    filterByLanguage(state, action) {
-      state.repos = state.filtered
-      if (action.payload !== 'All') {
-        state.repos = state.repos.filter((repo) => {
-          return repo?.topics?.some((topic) => {
-            return topic?.toLowerCase().includes(action.payload.toLowerCase())
-          })
-        })
-      }
     },
   },
 
@@ -67,7 +80,6 @@ export const reposSlice = createSlice({
       state.isLoading = false
       state.error = false
       state.repos = payload
-      state.filtered = payload
     })
 
     builder.addCase(fetchRepos.rejected, (state) => {
@@ -78,8 +90,6 @@ export const reposSlice = createSlice({
   },
 })
 
-export const { sortRecent, filterMyRepos, filterByLanguage } =
-  reposSlice.actions
+export const { addRandomStage } = reposSlice.actions
 export const selectRepos = (state: RootState) => state.repos
-// export const selectOwner = (state: RootState) => state.repos.repos[0]?.owner
 export default reposSlice.reducer

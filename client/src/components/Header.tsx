@@ -8,7 +8,10 @@ import { Box, Button } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 
-import { selectDarkmode, toggleDarkMode } from '../features/darkMode/darkModeSlice'
+import {
+  selectDarkmode,
+  toggleDarkMode,
+} from '../features/darkMode/darkModeSlice'
 
 export default function Bar() {
   let { darkMode } = useSelector(selectDarkmode)
@@ -33,7 +36,7 @@ export default function Bar() {
       <Toolbar
         sx={{
           display: 'flex',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
           flexWrap: 'nowrap',
           alignItems: 'center',
           p: 2,
@@ -44,30 +47,45 @@ export default function Bar() {
       >
         <Box
           sx={{
-            mx: 3,
+            fontSize: '2rem',
+            fontWeight: 'bold',
+            textDecoration: 'none',
             cursor: 'pointer',
-            fontSize: '1.3rem',
+            fontFamily: 'heading',
+            transition: 'all 0.3s ease-in-out',
             '&:hover': {
               color: 'palette.primary.light',
-              borderBottom: '1px solid',
-              borderBottomColor: 'palette.primary.light',
+              borderBottom: '2px solid',
+              borderBottomColor: '#088',
             },
           }}
           onClick={() => navigate('/')}
         >
-          Home
+          Management Dashboard
         </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'nowrap',
+          }}
+        >
+          <Box sx={navItem} onClick={() => navigate('/')}>
+            Home
+          </Box>
 
-        {/* <Box sx={navItem} onClick={() => navigate('/portfolio')}>
+          {/* <Box sx={navItem} onClick={() => navigate('/portfolio')}>
           Portfolio
         </Box> */}
 
-        <Button
-          sx={{ p: 1, color: 'white' }}
-          onClick={() => dispatch(toggleDarkMode())}
-        >
-          {!darkMode ? <DarkModeIcon /> : <LightModeIcon />}
-        </Button>
+          <Button
+            sx={{ p: 1, color: 'white' }}
+            onClick={() => dispatch(toggleDarkMode())}
+          >
+            {!darkMode ? <DarkModeIcon /> : <LightModeIcon />}
+          </Button>
+        </Box>
       </Toolbar>
     </AppBar>
   )

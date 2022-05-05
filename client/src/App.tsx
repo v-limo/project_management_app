@@ -6,13 +6,11 @@ import { Paper, ThemeProvider } from '@mui/material'
 
 import { selectDarkmode } from './features/darkMode/darkModeSlice'
 import { fetchRepos } from './features/repos/reposAsync'
-import { filterMyRepos, selectRepos, sortRecent } from './features/repos/reposSlice'
-import { Contact } from './pages/Contact'
+import { selectRepos, addRandomStage } from './features/repos/reposSlice'
 import { Home } from './pages/Home'
 import Layout from './pages/Layout'
 import NoMatch from './pages/NoMatch'
 import Policy from './pages/Policy'
-import Portfolio from './pages/Portfolio'
 import { darkTheme, lightTheme } from './theme'
 
 const App = () => {
@@ -28,13 +26,7 @@ const App = () => {
 
   useEffect(() => {
     if (repos?.length > 0) {
-      dispatch(sortRecent())
-    }
-  }, [dispatch, repos?.length])
-
-  useEffect(() => {
-    if (repos?.length > 0) {
-      dispatch(filterMyRepos('v-limo'))
+      dispatch(addRandomStage())
     }
   }, [dispatch, repos?.length])
 

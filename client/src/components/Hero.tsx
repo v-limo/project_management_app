@@ -7,14 +7,14 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import { Avatar, Box, Typography } from '@mui/material'
 
 import { selectRepos } from '../features/repos/reposSlice'
-import background from '../img/background.jpg'
+import background from '../img/background_2.jpg'
 
 const Hero = () => {
   return (
     <Box
       sx={{
         width: '100vw',
-        height: '80vh',
+        height: '100vh',
         backgroundImage: `url(${background})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -26,7 +26,7 @@ const Hero = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '1rem',
+        // padding: '1rem',
         color: '#ffffff',
       }}
       minWidth='sm'
