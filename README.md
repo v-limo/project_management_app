@@ -1,8 +1,8 @@
-# Portfolio
+# project management dashboar
 
 ## Description
 
-My portfolio project
+project management dashboard
 
 <!-- <p align="center">
 <img src="./demos/sreenshot.png" width="100%" />
