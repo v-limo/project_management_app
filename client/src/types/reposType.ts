@@ -79,14 +79,11 @@ export interface repoType {
   score: number
   stage?:
     | 'PLANNING'
-    | 'ANALYZING'
     | 'DESIGNING'
     | 'DEVELOPMENT'
     | 'TESTING'
     | 'RELEASE'
-    | 'DONE'
-    | 'CANCELLED'
-    | 'FAILED'
+    
 
   date_line?: string
 }

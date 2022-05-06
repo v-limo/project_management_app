@@ -1,26 +1,27 @@
+import { Box } from '@mui/material'
 import React from 'react'
 import SplitPane, { Pane } from 'react-split-pane'
 
 import Stage from './Stage'
 
 const Projects = () => {
-  let stages = [
-    'PLANNING',
-    'DESIGNING',
-    'DEVELOPMENT',
-    'TESTING',
-    'RELEASE',
-    'CANCELLED',
-  ]
+  let stages = ['PLANNING', 'DESIGNING', 'DEVELOPMENT', 'TESTING', 'RELEASE']
 
   return (
-    <SplitPane split='vertical'>
+    <Box
+      sx={{
+        display: 'flex',
+        width: '100%',
+        my: '1.3rem',
+        mx: 'auto',
+        minHeight: '100vh',
+        justifyContent: 'space-around',
+      }}
+    >
       {stages?.map((stage) => (
-        <Pane key={stage}>
-          <Stage stage={stage} />
-        </Pane>
+        <Stage stage={stage} key={stage} />
       ))}
-    </SplitPane>
+    </Box>
   )
 }
 export default Projects

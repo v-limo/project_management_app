@@ -9,7 +9,7 @@ const Hero = () => {
     <Box
       sx={{
         width: '100vw',
-        height: '100vh',
+        height: '60vh',
         backgroundImage: `url(${background})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',

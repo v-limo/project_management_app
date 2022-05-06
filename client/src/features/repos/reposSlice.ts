@@ -23,31 +23,19 @@ export const reposSlice = createSlice({
     addRandomStage(state) {
       const stages = [
         'PLANNING',
-        'ANALYZING',
         'DESIGNING',
         'DEVELOPMENT',
         'TESTING',
         'RELEASE',
-        'DONE',
-        'CANCELLED',
-        'FAILED',
-      ] as any[
-        | 'PLANNING'
-        | 'ANALYZING'
-        | 'DESIGNING'
-        | 'DEVELOPMENT'
-        | 'TESTING'
-        | 'RELEASE'
-        | 'DONE'
-        | 'CANCELLED'
-        | 'FAILED']
+      ] as any['PLANNING' | 'DESIGNING' | 'DEVELOPMENT' | 'TESTING' | 'RELEASE']
 
       state.repos.forEach((repo) => {
-        // add random future dates and stage to projects
+        // add random dates and stage to projects
         const randomStage = stages[Math.floor(Math.random() * stages.length)]
         const randomDate = new Date()
         randomDate.setDate(
-          randomDate.getDate() + Math.floor(Math.random() * 30)
+          randomDate.getDate() +
+            Math.floor(Math.random() * 15 - Math.floor(Math.random() * 15))
         )
         repo.date_line = new Date(randomDate).toLocaleDateString()
         repo.stage = randomStage
