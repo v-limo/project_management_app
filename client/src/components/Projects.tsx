@@ -1,30 +1,26 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import SplitPane, { Pane } from 'react-split-pane'
 
-import { Box } from '@mui/material'
-
-import { selectRepos } from '../features/repos/reposSlice'
+import Stage from './Stage'
 
 const Projects = () => {
-  const { repos } = useSelector(selectRepos)
-  return (
-    <Box
-      sx={{
-        maxWidth: 'lg',
-        mx: 'auto',
-        width: '100%',
-      }}
-    >
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      >
-        {/* {repos && repos.length > 0 && <Repos repos={repos} />} */}
+  let stages = [
+    'PLANNING',
+    'DESIGNING',
+    'DEVELOPMENT',
+    'TESTING',
+    'RELEASE',
+    'CANCELLED',
+  ]
 
-      </Box>
-    </Box>
+  return (
+    <SplitPane split='vertical'>
+      {stages?.map((stage) => (
+        <Pane key={stage}>
+          <Stage stage={stage} />
+        </Pane>
+      ))}
+    </SplitPane>
   )
 }
 export default Projects

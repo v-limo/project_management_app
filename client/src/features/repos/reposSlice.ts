@@ -43,28 +43,14 @@ export const reposSlice = createSlice({
         | 'FAILED']
 
       state.repos.forEach((repo) => {
+        // add random future dates and stage to projects
         const randomStage = stages[Math.floor(Math.random() * stages.length)]
-        repo.stage = randomStage
-      })
-
-      // add random future dates to
-      state.repos.forEach((repo) => {
         const randomDate = new Date()
         randomDate.setDate(
           randomDate.getDate() + Math.floor(Math.random() * 30)
         )
-        repo.date_line = randomDate
-      })
-
-      // sort repos by stage
-      state.repos.sort((a, b) => {
-        if (a.stage < b.stage) {
-          return -1
-        }
-        if (a?.stage > b?.stage) {
-          return 1
-        }
-        return 0
+        repo.date_line = new Date(randomDate).toLocaleDateString()
+        repo.stage = randomStage
       })
     },
   },

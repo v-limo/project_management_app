@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 
 import Hero from '../components/Hero'
 import Projects from '../components/Projects'
@@ -10,6 +10,7 @@ export const Home = () => (
     sx={{
       maxWidth: '100vw',
       mx: 'auto',
+      height: 'fit-content',
     }}
   >
     <Hero />

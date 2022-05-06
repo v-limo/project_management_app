@@ -6,7 +6,7 @@ import { Paper, ThemeProvider } from '@mui/material'
 
 import { selectDarkmode } from './features/darkMode/darkModeSlice'
 import { fetchRepos } from './features/repos/reposAsync'
-import { selectRepos, addRandomStage } from './features/repos/reposSlice'
+import { addRandomStage, selectRepos } from './features/repos/reposSlice'
 import { Home } from './pages/Home'
 import Layout from './pages/Layout'
 import NoMatch from './pages/NoMatch'

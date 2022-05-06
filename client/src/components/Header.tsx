@@ -8,10 +8,7 @@ import { Box, Button } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 
-import {
-  selectDarkmode,
-  toggleDarkMode,
-} from '../features/darkMode/darkModeSlice'
+import { selectDarkmode, toggleDarkMode } from '../features/darkMode/darkModeSlice'
 
 export default function Bar() {
   let { darkMode } = useSelector(selectDarkmode)
@@ -23,16 +20,20 @@ export default function Bar() {
     cursor: 'pointer',
     fontSize: '1.3rem',
     transition: 'all 0.3s ease-in-out',
-
+    color: 'white',
     '&:hover': {
-      color: 'palette.primary.light',
       borderBottom: '1px solid',
       borderBottomColor: '#088',
     },
   }
 
   return (
-    <AppBar sx={{ p: '4px', backgroundColor: 'palette.primary.main' }}>
+    <AppBar
+      sx={{
+        p: '4px',
+        background: 'RGB(182, 234, 255,0.5)',
+      }}
+    >
       <Toolbar
         sx={{
           display: 'flex',
@@ -53,15 +54,12 @@ export default function Bar() {
             cursor: 'pointer',
             fontFamily: 'heading',
             transition: 'all 0.3s ease-in-out',
-            '&:hover': {
-              color: 'palette.primary.light',
-              borderBottom: '2px solid',
-              borderBottomColor: '#088',
-            },
+            color: 'white',
+            borderBottom: '3px solid purple',
           }}
           onClick={() => navigate('/')}
         >
-          Management Dashboard
+          Dashboard
         </Box>
         <Box
           sx={{

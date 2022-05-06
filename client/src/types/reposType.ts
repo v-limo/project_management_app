@@ -78,17 +78,17 @@ export interface repoType {
   default_branch: string
   score: number
   stage?:
-  | "PLANNING"
-  | "ANALYZING"
-  | "DESIGNING"
-  | "DEVELOPMENT"
-  | "TESTING"
-  | "RELEASE"
-  | "DONE"
-  | "CANCELLED"
-  | "FAILED"
-  
-  date_line?: Date
+    | 'PLANNING'
+    | 'ANALYZING'
+    | 'DESIGNING'
+    | 'DEVELOPMENT'
+    | 'TESTING'
+    | 'RELEASE'
+    | 'DONE'
+    | 'CANCELLED'
+    | 'FAILED'
+
+  date_line?: string
 }
 
 export interface Owner {
