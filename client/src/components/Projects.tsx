@@ -1,11 +1,18 @@
-import { Box } from '@mui/material'
 import React from 'react'
-import SplitPane, { Pane } from 'react-split-pane'
 
+import { Box } from '@mui/material'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import Stage from './Stage'
 
 const Projects = () => {
   let stages = ['PLANNING', 'DESIGNING', 'DEVELOPMENT', 'TESTING', 'RELEASE']
+
+  const onDragEnd = (result: any) => {
+    const { destination, source, draggableId } = result
+    if (!destination) {
+      return
+    }
+  }
 
   return (
     <Box
@@ -18,9 +25,13 @@ const Projects = () => {
         justifyContent: 'space-around',
       }}
     >
-      {stages?.map((stage) => (
-        <Stage stage={stage} key={stage} />
-      ))}
+      <DragDropContext onDragEnd={onDragEnd}>
+        {stages.map((stage) => (
+          <Droppable droppableId={stage} key={stage}>
+            {() => <Stage stage={stage} />}
+          </Droppable>
+        ))}
+      </DragDropContext>
     </Box>
   )
 }

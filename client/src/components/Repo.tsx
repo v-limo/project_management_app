@@ -1,13 +1,9 @@
 import React from 'react'
 
-import CodeIcon from '@mui/icons-material/Code'
 import {
   Box,
-  Button,
   Card,
-  CardActions,
   CardContent,
-  CardMedia,
   Chip,
   Divider,
   Typography,
@@ -20,21 +16,19 @@ type repoProps = {
 }
 
 function Repo({ repo }: repoProps) {
-  const { name, description, full_name, language, topics, date_line } = repo
+  const { name, description, full_name, language, topics } = repo
 
-  const pastDateLine = (dateline: string) => {
-    const today = new Date()
-    const dateLine = new Date(dateline)
-    const diff = dateLine.getTime() - today.getTime()
+  // const pastDateLine = (dateline: string) => {
+  //   const today = new Date()
+  //   const dateLine = new Date(dateline)
+  //   const diff = dateLine.getTime() - today.getTime()
 
-    if (diff < 0) {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  date_line && console.log(pastDateLine(date_line))
+  //   if (diff < 0) {
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+  // }
 
   return (
     <Card
@@ -46,7 +40,6 @@ function Repo({ repo }: repoProps) {
         border: '0.2px solid #e0e0e0',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#fafafa',
         borderRadius: '0.5rem',
         '&:hover': {
           boxShadow: 4,

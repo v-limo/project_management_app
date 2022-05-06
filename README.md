@@ -10,9 +10,9 @@ project management dashboard
 
 ## Live demo
 
-A [live demo](https://limo-portfolio.netlify.app/) of the app is hosted on Netlify.
+A [live demo](https://project-mngt.netlify.app/) of the app is hosted on Netlify.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8b40e482-bbd6-4493-bbf7-8cab7a674d1e/deploy-status)](https://app.netlify.com/sites/limo-portfolio/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8b40e482-bbd6-4493-bbf7-8cab7a674d1e/deploy-status)](https://app.netlify.com/sites/project-mngt/deploys)
 
 ## Technology stack
 
@@ -22,7 +22,6 @@ A [live demo](https://limo-portfolio.netlify.app/) of the app is hosted on Netli
 > - TypeScript
 > - React Hooks
 > - React router
-> - TailwindCSS
 > - Netlify hosting
 >   <br>
 
@@ -31,14 +30,14 @@ A [live demo](https://limo-portfolio.netlify.app/) of the app is hosted on Netli
 Clone this repository to the desired location
 
 ```Shell
-git  clone https://github.com/v-limo/portfolio
+git  clone https://github.com/v-limo/project_management_app
 ```
 
 ### Install Dependencies
 
 ```
+cd client
 npm install
-
 ```
 
 ### Run
@@ -64,7 +63,3 @@ Contributions are highly appreciated. In general, I follow the "fork-and-pull" G
 5. **Submit** a Pull request so that I can review your changes
 
 **NOTE:** Be sure to merge the latest from "upstream" before making a pull request!
-
-### License
-
-MIT license

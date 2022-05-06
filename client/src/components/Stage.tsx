@@ -6,6 +6,8 @@ import { Box, Divider, Typography } from '@mui/material'
 import { selectRepos } from '../features/repos/reposSlice'
 import Repo from './Repo'
 
+import { Draggable } from 'react-beautiful-dnd'
+
 type Props = {
   stage: string
 }
@@ -20,11 +22,10 @@ const Stage = ({ stage }: Props) => {
         width: '100%',
         mx: '1rem',
         borderRadius: '0.5rem',
-        borderTop: '10px solid black',
+        borderTop: '10px solid brown',
         boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.4)',
         mt: '-2rem',
         zIndex: 1,
-        
       }}
     >
       <Typography
@@ -60,11 +61,14 @@ const Stage = ({ stage }: Props) => {
       >
         {reposByStage &&
           reposByStage?.length > 0 &&
-          reposByStage.map((repo) => (
-            <Repo repo={repo} key={repo.clone_url} />
-            // <Typography variant='h4' gutterBottom>
-            //   {repo?.name ?? 'No name'}
-            // </Typography>
+          reposByStage.map((repo, index) => (
+            <Draggable
+              key={repo.clone_url}
+              draggableId={repo?.clone_url}
+              index={index}
+            >
+              {() => <Repo repo={repo} />}
+            </Draggable>
           ))}
       </Box>
     </Box>

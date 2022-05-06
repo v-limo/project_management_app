@@ -8,24 +8,16 @@ import { Box, Button } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 
-import { selectDarkmode, toggleDarkMode } from '../features/darkMode/darkModeSlice'
+import {
+  selectDarkmode,
+  toggleDarkMode,
+} from '../features/darkMode/darkModeSlice'
 
 export default function Bar() {
   let { darkMode } = useSelector(selectDarkmode)
   let dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const navItem = {
-    mx: 3,
-    cursor: 'pointer',
-    fontSize: '1.3rem',
-    transition: 'all 0.3s ease-in-out',
-    color: 'white',
-    '&:hover': {
-      borderBottom: '1px solid',
-      borderBottomColor: '#088',
-    },
-  }
 
   return (
     <AppBar
@@ -69,14 +61,6 @@ export default function Bar() {
             flexWrap: 'nowrap',
           }}
         >
-          <Box sx={navItem} onClick={() => navigate('/')}>
-            Home
-          </Box>
-
-          {/* <Box sx={navItem} onClick={() => navigate('/portfolio')}>
-          Portfolio
-        </Box> */}
-
           <Button
             sx={{ p: 1, color: 'white' }}
             onClick={() => dispatch(toggleDarkMode())}
