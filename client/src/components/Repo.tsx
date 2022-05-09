@@ -1,7 +1,15 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 
-import { Box, Card, CardContent, Chip, Divider, Typography } from '@mui/material'
+import {
+  Box,
+  Card,
+  CardContent,
+  Chip,
+  Divider,
+  Typography,
+  Avatar,
+} from '@mui/material'
 
 import { repoType } from '../types/reposType'
 
@@ -11,7 +19,13 @@ type repoProps = {
 }
 
 function Repo({ repo, index }: repoProps) {
-  const { name, full_name, date_line, language, topics } = repo
+  const { name, full_name, date_line, language, topics, owner } = repo
+
+  const pastDateLine = date_line
+    ? new Date(date_line).getTime() < new Date().getTime()
+      ? true
+      : false
+    : false
 
   return (
     <Draggable draggableId={name} index={index}>
@@ -45,7 +59,6 @@ function Repo({ repo, index }: repoProps) {
           >
             <Typography
               variant='h6'
-              gutterBottom
               sx={{
                 color: '#2d79c7',
                 fontWeight: 'bold',
@@ -55,22 +68,23 @@ function Repo({ repo, index }: repoProps) {
             >
               {name.replaceAll('_', ' ').replaceAll('-', ' ').toUpperCase()}
             </Typography>
-            <Typography variant='body1' gutterBottom>
+            <Typography variant='body1'>
               {full_name} - {language?.length && `#${language}`}
             </Typography>
             <Divider
               sx={{
+                my: '0.2rem',
                 width: '60%',
-                height: '1px',
                 backgroundColor: '#e7ecf0',
               }}
             />
             <Box
               sx={{
                 display: 'flex',
-                mt: '0.8rem',
-                alignItems: 'center',
+                mt: '0.2rem',
+                maxWidth: '100%',
                 flexWrap: 'wrap',
+                borderRadius: '0.5rem',
               }}
             >
               {topics?.length > 0 &&
@@ -82,35 +96,44 @@ function Repo({ repo, index }: repoProps) {
                     clickable
                     sx={{
                       m: '1px',
-
-                      borderRadius: '0.5rem',
-                      margin: '0.2rem',
-                      '&:hover': {
-                        color: '#fafafa',
-                        backgroundColor: '#5b748d',
-                        border: '1px solid ##5b748d',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease-in-out',
-                        transitionDelay: '0.1s',
-                      },
                     }}
                   />
                 ))}
             </Box>
-            <Typography
-              variant='body1'
+
+            <Box
               sx={{
-                fontSize: '0.8rem',
-                fontWeight: 'bold',
-                color: '#2d79c7',
-                textAlign: 'center',
-                textDecoration: 'italic',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
                 mt: '0.8rem',
+                alignItems: 'center',
+                width: '80%',
               }}
-              gutterBottom
             >
-              Date line: {date_line}
-            </Typography>
+              <Avatar
+                alt='Avatar'
+                src={owner?.avatar_url}
+                sx={{
+                  width: 40,
+                  height: 40,
+                }}
+              />
+              <Typography
+                variant='body1'
+                sx={{
+                  fontSize: '0.8rem',
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                  padding: '0.25rem',
+                  borderRadius: '0.1rem',
+                  textDecoration: 'italic',
+                  bgcolor: pastDateLine ? '#a83a3ac5' : '#397838',
+                }}
+              >
+                DateLine: {date_line}
+              </Typography>
+            </Box>
           </CardContent>
         </Card>
       )}

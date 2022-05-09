@@ -30,22 +30,12 @@ export const reposSlice = createSlice({
           Math.floor(Math.random() * stages.length)
         ] as stageType
 
-        const randomDate = new Date()
-        randomDate.setDate(
-          randomDate.getDate() + Math.floor(Math.random() * 30)
-        )
-        randomDate.setDate(
-          randomDate.getDate() +
-            Math.floor(Math.random() * 15 - Math.floor(Math.random() * 15))
-        )
-
         repo.stage = randomStage
-        repo.date_line = new Date(randomDate).toLocaleDateString('en-US', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })
+        repo.date_line = new Date(
+          new Date().getTime() +
+            Math.floor(Math.random() * 15) * 24 * 60 * 60 * 1000 -
+            Math.floor(Math.random() * 13) * 24 * 60 * 60 * 1000
+        ).toLocaleDateString()
       })
     },
 
@@ -75,14 +65,12 @@ export const reposSlice = createSlice({
           ...state.repos.filter((repo) => repo.stage !== source.droppableId),
         ]
       } else {
-        
         repo.stage = destination.droppableId as stageType
-        repo.date_line = new Date().toLocaleDateString('en-US', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })
+
+        // set dateline to 15 destination days from no
+        repo.date_line = new Date(
+          new Date().getTime() + 15 * 24 * 60 * 60 * 1000
+        ).toLocaleDateString()
 
         destinationrepos.splice(destination.index, 0, repo)
 

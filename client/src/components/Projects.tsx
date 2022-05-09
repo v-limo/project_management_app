@@ -41,7 +41,8 @@ const Projects = () => {
           display: 'flex',
           width: '100%',
           my: '1.3rem',
-          mx: 'auto',
+          // mx: 'auto',
+          px: '2rem',
           height: 'fit-content',
           justifyContent: 'space-around',
         }}

@@ -2,7 +2,7 @@ import React from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import { useSelector } from 'react-redux'
 
-import { Box, Divider, Typography } from '@mui/material'
+import { Box, Chip, Divider, Typography } from '@mui/material'
 
 import { selectRepos } from '../features/repos/reposSlice'
 import Repo from './Repo'
@@ -13,6 +13,8 @@ type Props = {
 const Stage = ({ stage }: Props) => {
   const { repos } = useSelector(selectRepos)
   let reposByStage = repos.filter((repo) => repo?.stage === stage)
+
+  const handleClick = () => {}
 
   return (
     <Box
@@ -42,11 +44,7 @@ const Stage = ({ stage }: Props) => {
           marginTop: '1rem',
           textTransform: 'uppercase',
           fontWeight: 'bold',
-          textDecoration: 'underline',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
         }}
-        gutterBottom
       >
         {stage}
       </Typography>
@@ -83,6 +81,18 @@ const Stage = ({ stage }: Props) => {
           </Box>
         )}
       </Droppable>
+
+      <Chip
+        sx={{
+          m: 'auto',
+          mb: '1rem',
+        }}
+        label={` Add Tasks to ${stage}`}
+        variant='filled'
+        color='success'
+        disabled={reposByStage?.length === 0 || true}
+        onClick={handleClick}
+      />
     </Box>
   )
 }
