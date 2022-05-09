@@ -9,7 +9,7 @@ const Hero = () => {
     <Box
       sx={{
         width: '100vw',
-        height: '60vh',
+        height: '50vh',
         backgroundImage: `url(${background})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -32,6 +32,16 @@ const Hero = () => {
           fontFamily: 'heading',
           textAlign: 'center',
           marginTop: '1rem',
+          textTransform: 'uppercase',
+          boxShadow: '0px 0px 10px rgba(246, 241, 241, 0.4)',
+          padding: '1rem',
+          borderRadius: '5px',
+          fontWeight: 'bold',
+          textDecoration: 'underline',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          maxWidth: '100%',
+        
         }}
       >
         Project Management Dashboard

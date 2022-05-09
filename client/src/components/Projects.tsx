@@ -1,38 +1,56 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import { DragDropContext, DropResult } from 'react-beautiful-dnd'
+import { useDispatch } from 'react-redux'
 
 import { Box } from '@mui/material'
-import { DragDropContext, Droppable } from 'react-beautiful-dnd'
+
+import { changeStage, selectRepos } from '../features/repos/reposSlice'
 import Stage from './Stage'
+import { Loading } from './Loading'
+
+import { useSelector } from 'react-redux'
 
 const Projects = () => {
-  let stages = ['PLANNING', 'DESIGNING', 'DEVELOPMENT', 'TESTING', 'RELEASE']
+  let stages = ['backlog', 'todo', 'inProgress', 'review', 'done']
+  const dispatch = useDispatch()
+  const { isLoading } = useSelector(selectRepos)
 
-  const onDragEnd = (result: any) => {
-    const { destination, source, draggableId } = result
-    if (!destination) {
-      return
-    }
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+      const { destination, source, draggableId } = result
+      if (
+        !destination ||
+        (destination.droppableId === source.droppableId &&
+          destination.index === source.index)
+      ) {
+        return
+      }
+      dispatch(changeStage({ destination, draggableId, source }))
+    },
+    [dispatch]
+  )
+
+  if (isLoading) {
+    return <Loading />
   }
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        my: '1.3rem',
-        mx: 'auto',
-        minHeight: '100vh',
-        justifyContent: 'space-around',
-      }}
-    >
-      <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Box
+        sx={{
+          display: 'flex',
+          width: '100%',
+          my: '1.3rem',
+          mx: 'auto',
+          height: 'fit-content',
+          justifyContent: 'space-around',
+        }}
+      >
         {stages.map((stage) => (
-          <Droppable droppableId={stage} key={stage}>
-            {() => <Stage stage={stage} />}
-          </Droppable>
+          <Stage stage={stage} key={stage} />
         ))}
-      </DragDropContext>
-    </Box>
+      </Box>
+    </DragDropContext>
   )
 }
 export default Projects

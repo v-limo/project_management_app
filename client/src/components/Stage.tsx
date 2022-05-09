@@ -1,12 +1,11 @@
 import React from 'react'
+import { Droppable } from 'react-beautiful-dnd'
 import { useSelector } from 'react-redux'
 
 import { Box, Divider, Typography } from '@mui/material'
 
 import { selectRepos } from '../features/repos/reposSlice'
 import Repo from './Repo'
-
-import { Draggable } from 'react-beautiful-dnd'
 
 type Props = {
   stage: string
@@ -22,10 +21,17 @@ const Stage = ({ stage }: Props) => {
         width: '100%',
         mx: '1rem',
         borderRadius: '0.5rem',
-        borderTop: '10px solid brown',
-        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.4)',
+        borderTop: '1rem solid #e7ecf0',
+        boxShadow: '0px 0px 10px rgba(99, 94, 94, 0.4)',
         mt: '-2rem',
+        minHeight: '50vh',
         zIndex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        flexGrow: 1,
+        border: '0.2px solid #e0e0e0',
       }}
     >
       <Typography
@@ -37,12 +43,13 @@ const Stage = ({ stage }: Props) => {
           textTransform: 'uppercase',
           fontWeight: 'bold',
           textDecoration: 'underline',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
         }}
         gutterBottom
       >
         {stage}
       </Typography>
-
       <Divider
         sx={{
           width: '100%',
@@ -52,25 +59,30 @@ const Stage = ({ stage }: Props) => {
         }}
       />
 
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          padding: '1rem',
-        }}
-      >
-        {reposByStage &&
-          reposByStage?.length > 0 &&
-          reposByStage.map((repo, index) => (
-            <Draggable
-              key={repo.clone_url}
-              draggableId={repo?.clone_url}
-              index={index}
-            >
-              {() => <Repo repo={repo} />}
-            </Draggable>
-          ))}
-      </Box>
+      <Droppable droppableId={stage}>
+        {(provided) => (
+          <Box
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              padding: '1rem',
+            }}
+          >
+            {reposByStage &&
+              reposByStage?.length > 0 &&
+              reposByStage.map((repo, index) => (
+                <Repo
+                  repo={repo}
+                  key={`${repo.full_name}-${repo.stage}-${index}`}
+                  index={index}
+                />
+              ))}
+            {provided.placeholder}
+          </Box>
+        )}
+      </Droppable>
     </Box>
   )
 }

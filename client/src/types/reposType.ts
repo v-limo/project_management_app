@@ -1,3 +1,5 @@
+export type stageType = 'backlog' | 'todo' | 'inProgress' | 'review' | 'done'
+
 export interface repoType {
   id: number
   node_id: string
@@ -77,14 +79,7 @@ export interface repoType {
   watchers: number
   default_branch: string
   score: number
-  stage?:
-    | 'PLANNING'
-    | 'DESIGNING'
-    | 'DEVELOPMENT'
-    | 'TESTING'
-    | 'RELEASE'
-    
-
+  stage?: stageType
   date_line?: string
 }
 
@@ -109,4 +104,16 @@ export interface Owner {
   site_admin: boolean
   name?: string
   bio?: string
+}
+
+export interface changeStagePayload {
+  draggableId: string
+  destination: {
+    droppableId: string
+    index: number
+  }
+  source: {
+    droppableId: string
+    index: number
+  }
 }

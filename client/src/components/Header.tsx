@@ -8,16 +8,12 @@ import { Box, Button } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 
-import {
-  selectDarkmode,
-  toggleDarkMode,
-} from '../features/darkMode/darkModeSlice'
+import { selectDarkmode, toggleDarkMode } from '../features/darkMode/darkModeSlice'
 
 export default function Bar() {
   let { darkMode } = useSelector(selectDarkmode)
   let dispatch = useDispatch()
   const navigate = useNavigate()
-
 
   return (
     <AppBar
@@ -33,7 +29,6 @@ export default function Bar() {
           flexWrap: 'nowrap',
           alignItems: 'center',
           p: 2,
-
           mx: 'auto',
           width: '100%',
         }}

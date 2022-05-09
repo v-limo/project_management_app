@@ -15,20 +15,22 @@ import { darkTheme, lightTheme } from './theme'
 
 const App = () => {
   let { darkMode: mode } = useSelector(selectDarkmode)
-  let { repos } = useSelector(selectRepos)
+  let { repos, message } = useSelector(selectRepos)
   const theme = mode ? darkTheme : lightTheme
 
   let dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchRepos())
-  }, [dispatch])
+    if (repos.length === 0) {
+      dispatch(fetchRepos())
+    }
+  }, [dispatch, repos.length])
 
   useEffect(() => {
-    if (repos?.length > 0) {
+    if (message === 'Repos fetched successfully') {
       dispatch(addRandomStage())
     }
-  }, [dispatch, repos?.length])
+  }, [dispatch, message])
 
   return (
     <ThemeProvider theme={theme}>

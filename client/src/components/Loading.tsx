@@ -1,4 +1,4 @@
-import { Box,Typography, CircularProgress } from '@mui/material'
+import { Box, Typography, CircularProgress } from '@mui/material'
 
 export const Loading = () => {
   return (
@@ -8,12 +8,11 @@ export const Loading = () => {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        minHeight: '50vh',
-        // backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        minHeight: '70vh',
       }}
     >
       <CircularProgress color='primary' />
-      <Typography type='text'>Loading for projects .....</Typography>
+      <Typography>Loading for projects .....</Typography>      
     </Box>
   )
 }
