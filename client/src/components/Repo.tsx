@@ -19,10 +19,10 @@ type repoProps = {
 }
 
 function Repo({ repo, index }: repoProps) {
-  const { name, full_name, date_line, language, topics, owner } = repo
+  const { name, full_name, dead_line, language, topics, owner } = repo
 
-  const pastDateLine = date_line
-    ? new Date(date_line).getTime() < new Date().getTime()
+  const pastDateLine = dead_line
+    ? new Date(dead_line).getTime() < new Date().getTime()
       ? true
       : false
     : false
@@ -104,11 +104,11 @@ function Repo({ repo, index }: repoProps) {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                mt: '0.8rem',
+
                 alignItems: 'center',
-                width: '80%',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between',
+                width: '100%',
               }}
             >
               <Avatar
@@ -125,13 +125,14 @@ function Repo({ repo, index }: repoProps) {
                   fontSize: '0.8rem',
                   fontWeight: 'bold',
                   textAlign: 'center',
-                  padding: '0.25rem',
-                  borderRadius: '0.1rem',
+                  m: 'auto',
+                  padding: '4px',
+                  borderRadius: '10px',
                   textDecoration: 'italic',
                   bgcolor: pastDateLine ? '#a83a3ac5' : '#397838',
                 }}
               >
-                DateLine: {date_line}
+                deadline: {dead_line}
               </Typography>
             </Box>
           </CardContent>

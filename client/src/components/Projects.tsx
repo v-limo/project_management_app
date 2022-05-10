@@ -39,10 +39,9 @@ const Projects = () => {
       <Box
         sx={{
           display: 'flex',
-          width: '100%',
+          width: '95%',
           my: '1.3rem',
-          // mx: 'auto',
-          px: '2rem',
+          mx: 'auto',
           height: 'fit-content',
           justifyContent: 'space-around',
         }}

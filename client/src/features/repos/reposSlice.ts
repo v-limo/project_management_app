@@ -31,7 +31,7 @@ export const reposSlice = createSlice({
         ] as stageType
 
         repo.stage = randomStage
-        repo.date_line = new Date(
+        repo.dead_line = new Date(
           new Date().getTime() +
             Math.floor(Math.random() * 15) * 24 * 60 * 60 * 1000 -
             Math.floor(Math.random() * 13) * 24 * 60 * 60 * 1000
@@ -68,7 +68,7 @@ export const reposSlice = createSlice({
         repo.stage = destination.droppableId as stageType
 
         // set dateline to 15 destination days from no
-        repo.date_line = new Date(
+        repo.dead_line = new Date(
           new Date().getTime() + 15 * 24 * 60 * 60 * 1000
         ).toLocaleDateString()
 

@@ -9,7 +9,7 @@ export interface repoType {
   language: string
   topics: string[]
   stage?: stageType
-  date_line?: string
+  dead_line?: string
 }
 
 export interface Owner {

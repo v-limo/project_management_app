@@ -39,11 +39,10 @@ const Stage = ({ stage }: Props) => {
       <Typography
         variant='h4'
         sx={{
-          fontFamily: 'heading',
           textAlign: 'center',
           marginTop: '1rem',
           textTransform: 'uppercase',
-          fontWeight: 'bold',
+          textDecoration: 'underline',
         }}
       >
         {stage}
