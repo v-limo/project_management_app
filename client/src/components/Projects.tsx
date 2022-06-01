@@ -1,14 +1,12 @@
 import React, { useCallback } from 'react'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Box } from '@mui/material'
 
 import { changeStage, selectRepos } from '../features/repos/reposSlice'
-import Stage from './Stage'
 import { Loading } from './Loading'
-
-import { useSelector } from 'react-redux'
+import Stage from './Stage'
 
 const Projects = () => {
   let stages = ['backlog', 'todo', 'inProgress', 'review', 'done']
@@ -39,7 +37,7 @@ const Projects = () => {
       <Box
         sx={{
           display: 'flex',
-          width: '95%',
+          maxWidth: '1200px',
           my: '1.3rem',
           mx: 'auto',
           height: 'fit-content',

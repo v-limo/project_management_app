@@ -14,6 +14,8 @@ const Stage = ({ stage }: Props) => {
   const { repos } = useSelector(selectRepos)
   let reposByStage = repos.filter((repo) => repo?.stage === stage)
 
+ 
+
   const handleClick = () => {}
 
   return (
@@ -21,13 +23,12 @@ const Stage = ({ stage }: Props) => {
       sx={{
         flex: 1,
         width: '100%',
-        mx: '1rem',
+        mx: '5px',
         borderRadius: '0.5rem',
         borderTop: '1rem solid #e7ecf0',
-        boxShadow: '0px 0px 10px rgba(99, 94, 94, 0.4)',
         mt: '-2rem',
         minHeight: '50vh',
-        zIndex: 1,
+        zIndex: 10,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
@@ -89,7 +90,7 @@ const Stage = ({ stage }: Props) => {
         label={` Add Tasks to ${stage}`}
         variant='filled'
         color='success'
-        disabled={reposByStage?.length === 0 || true}
+        // disabled={reposByStage?.length === 0 || true}
         onClick={handleClick}
       />
     </Box>

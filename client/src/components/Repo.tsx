@@ -1,15 +1,7 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 
-import {
-  Box,
-  Card,
-  CardContent,
-  Chip,
-  Divider,
-  Typography,
-  Avatar,
-} from '@mui/material'
+import { Avatar, Box, Card, CardContent, Typography } from '@mui/material'
 
 import { repoType } from '../types/reposType'
 
@@ -19,7 +11,7 @@ type repoProps = {
 }
 
 function Repo({ repo, index }: repoProps) {
-  const { name, full_name, dead_line, language, topics, owner } = repo
+  const { name, dead_line, description, owner } = repo
 
   const pastDateLine = dead_line
     ? new Date(dead_line).getTime() < new Date().getTime()
@@ -58,53 +50,31 @@ function Repo({ repo, index }: repoProps) {
             }}
           >
             <Typography
-              variant='h6'
+              variant='body1'
               sx={{
                 color: '#2d79c7',
                 fontWeight: 'bold',
-                fontSize: '1rem',
+                fontSize: '14px',
                 textDecoration: 'underline',
               }}
             >
-              {name.replaceAll('_', ' ').replaceAll('-', ' ').toUpperCase()}
+              {name.replaceAll('_', ' ').replaceAll('-', ' ')}
             </Typography>
-            <Typography variant='body1'>
-              {full_name} - {language?.length && `#${language}`}
-            </Typography>
-            <Divider
+            <Typography
+              variant='body1'
               sx={{
-                my: '0.2rem',
-                width: '60%',
-                backgroundColor: '#e7ecf0',
-              }}
-            />
-            <Box
-              sx={{
-                display: 'flex',
-                mt: '0.2rem',
-                maxWidth: '100%',
-                flexWrap: 'wrap',
-                borderRadius: '0.5rem',
+                fontSize: '12px',
               }}
             >
-              {topics?.length > 0 &&
-                topics.map((topic, index) => (
-                  <Chip
-                    key={index}
-                    label={`#${topic}`}
-                    size='small'
-                    clickable
-                    sx={{
-                      m: '1px',
-                    }}
-                  />
-                ))}
-            </Box>
+              {description && description?.length < 120
+                ? description
+                : description?.slice(0, 120) + '...'}
+            </Typography>
 
             <Box
               sx={{
                 display: 'flex',
-
+                mt: '0.5rem',
                 alignItems: 'center',
                 flexWrap: 'wrap',
                 justifyContent: 'space-between',
@@ -115,20 +85,17 @@ function Repo({ repo, index }: repoProps) {
                 alt='Avatar'
                 src={owner?.avatar_url}
                 sx={{
-                  width: 40,
-                  height: 40,
+                  width: 30,
+                  height: 30,
                 }}
               />
               <Typography
                 variant='body1'
                 sx={{
-                  fontSize: '0.8rem',
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                  m: 'auto',
-                  padding: '4px',
-                  borderRadius: '10px',
-                  textDecoration: 'italic',
+                  padding: "2px",
+                  fontSize: '12px',
+                  border: '1px solid #ffffff',
+                  borderRadius: '0.3rem',
                   bgcolor: pastDateLine ? '#a83a3ac5' : '#397838',
                 }}
               >
