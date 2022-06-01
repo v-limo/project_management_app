@@ -39,6 +39,19 @@ export const reposSlice = createSlice({
       })
     },
 
+    AddTask(state, action: { payload: repoType }) {
+      state.repos.push(action.payload)
+      state.message = 'Task added successfully.'
+    },
+
+    RemoveTask(state, action: { payload: repoType }) {
+      const index = state.repos.indexOf(action.payload)
+      state.repos.splice(index, 1)
+      state.isLoading = false
+      state.error = false
+      state.message = ''
+    },
+
     changeStage(state, action: { payload: changeStagePayload }) {
       const { payload } = action
       const { destination, draggableId, source } = payload
@@ -107,6 +120,7 @@ export const reposSlice = createSlice({
   },
 })
 
-export const { addRandomStage, changeStage } = reposSlice.actions
+export const { addRandomStage, AddTask, RemoveTask, changeStage } =
+  reposSlice.actions
 export const selectRepos = (state: RootState) => state.repos
 export default reposSlice.reducer

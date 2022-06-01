@@ -5,11 +5,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@mui/material'
 
 import { changeStage, selectRepos } from '../features/repos/reposSlice'
+import { stageType } from '../types/reposType'
 import { Loading } from './Loading'
 import Stage from './Stage'
 
 const Projects = () => {
-  let stages = ['backlog', 'todo', 'inProgress', 'review', 'done']
+  let stages = [
+    'backlog',
+    'todo',
+    'inProgress',
+    'review',
+    'done',
+  ] as stageType[]
   const dispatch = useDispatch()
   const { isLoading } = useSelector(selectRepos)
 

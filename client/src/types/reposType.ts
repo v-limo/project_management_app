@@ -1,14 +1,10 @@
 export type stageType = 'backlog' | 'todo' | 'inProgress' | 'review' | 'done'
 
 export interface repoType {
+  id: number
   name: string
-  full_name: string
   description: string
   owner: Owner
-  html_url: string
-  languages_url: string
-  language: string
-  topics: string[]
   stage?: stageType
   dead_line?: string
 }
